@@ -7,22 +7,23 @@ export const Navbar = () => {
   const [activeSection, setActiveSection] = useState("");
   const [isScrolled, setIsScrolled] = useState(false);
 
-  // Scroll background effect
+  /* ================= SCROLL EFFECT ================= */
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 40);
+      setIsScrolled(window.scrollY > 30);
     };
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const handleMenuItemClick = (sectionId) => {
-    setActiveSection(sectionId);
+  /* ================= SMOOTH SCROLL ================= */
+  const handleMenuItemClick = (id) => {
+    setActiveSection(id);
     setIsOpen(false);
 
-    const section = document.getElementById(sectionId);
-    if (section) section.scrollIntoView({ behavior: "smooth" });
+    const section = document.getElementById(id);
+    section?.scrollIntoView({ behavior: "smooth", block: "start" });
   };
 
   const menuItems = [
@@ -35,42 +36,45 @@ export const Navbar = () => {
 
   return (
     <nav
-      className={`fixed top-0 w-full z-50 transition-all duration-500 px-[7vw] lg:px-[18vw]
+      className={`fixed w-full top-0 z-50 transition-all duration-500
       ${
         isScrolled
-          ? "bg-[#050414]/70 backdrop-blur-xl shadow-[0_8px_30px_rgba(0,0,0,0.3)]"
+          ? "bg-[#050414]/75 backdrop-blur-2xl border-b border-white/10 shadow-[0_10px_40px_rgba(0,0,0,0.4)]"
           : "bg-transparent"
       }`}
     >
-      <div className="text-white py-5 flex justify-between items-center">
+      <div className="max-w-7xl mx-auto px-6 lg:px-12 py-5 flex items-center justify-between text-white">
 
-        {/* Logo */}
-        <div className="text-xl font-bold cursor-pointer tracking-wide">
+        {/* ================= LOGO ================= */}
+        <div className="font-semibold text-xl tracking-wide cursor-pointer group">
           <span className="text-[#8245ec]">&lt;</span>
-          <span className="bg-gradient-to-r from-white to-gray-400 bg-clip-text text-transparent">
+
+          <span className="bg-gradient-to-r from-white via-gray-300 to-gray-500 bg-clip-text text-transparent group-hover:from-[#8245ec] group-hover:to-white transition duration-500">
             Shahbaj Hussain
           </span>
+
           <span className="text-[#8245ec]">/&gt;</span>
         </div>
 
-        {/* Desktop Menu */}
-        <ul className="hidden md:flex space-x-10 text-gray-300 font-medium">
+        {/* ================= DESKTOP MENU ================= */}
+        <ul className="hidden md:flex items-center gap-10 text-sm font-medium text-gray-300">
           {menuItems.map((item) => (
             <li key={item.id} className="relative group">
               <button
                 onClick={() => handleMenuItemClick(item.id)}
-                className={`transition duration-300 ${
+                className={`transition-all duration-300 ${
                   activeSection === item.id
-                    ? "text-[#8245ec]"
+                    ? "text-white"
                     : "hover:text-white"
                 }`}
               >
                 {item.label}
               </button>
 
-              {/* Animated underline */}
+              {/* underline animation */}
               <span
-                className={`absolute left-0 -bottom-1 h-[2px] bg-[#8245ec] transition-all duration-300
+                className={`absolute left-0 -bottom-2 h-[2px] rounded-full bg-gradient-to-r from-[#8245ec] to-purple-400
+                transition-all duration-300
                 ${
                   activeSection === item.id
                     ? "w-full"
@@ -81,28 +85,28 @@ export const Navbar = () => {
           ))}
         </ul>
 
-        {/* Social Icons */}
-        <div className="hidden md:flex space-x-5">
+        {/* ================= SOCIAL ================= */}
+        <div className="hidden md:flex items-center gap-5">
           <a
             href="https://github.com/shahbaj00786"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-gray-300 hover:text-[#8245ec] transition transform hover:scale-110"
+            className="p-2 rounded-full hover:bg-white/10 transition-all duration-300 hover:scale-110"
           >
-            <FaGithub size={22} />
+            <FaGithub size={20} />
           </a>
 
           <a
             href="https://www.linkedin.com/in/shahbaj-hussain-9160443a8"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-gray-300 hover:text-[#8245ec] transition transform hover:scale-110"
+            className="p-2 rounded-full hover:bg-white/10 transition-all duration-300 hover:scale-110"
           >
-            <FaLinkedin size={22} />
+            <FaLinkedin size={20} />
           </a>
         </div>
 
-        {/* Mobile Icon */}
+        {/* ================= MOBILE BUTTON ================= */}
         <div className="md:hidden">
           {isOpen ? (
             <FiX
@@ -118,31 +122,31 @@ export const Navbar = () => {
         </div>
       </div>
 
-      {/* Mobile Menu */}
+      {/* ================= MOBILE MENU ================= */}
       <div
-        className={`md:hidden absolute left-1/2 -translate-x-1/2 w-[90%]
+        className={`md:hidden absolute left-1/2 -translate-x-1/2 w-[92%]
         transition-all duration-500 ${
           isOpen
             ? "top-20 opacity-100"
             : "top-10 opacity-0 pointer-events-none"
         }`}
       >
-        <div className="bg-[#050414]/80 backdrop-blur-xl rounded-2xl shadow-xl border border-white/10">
-          <ul className="flex flex-col items-center py-6 space-y-6 text-gray-300 font-medium">
+        <div className="rounded-2xl border border-white/10 bg-[#050414]/90 backdrop-blur-2xl shadow-2xl">
+          <ul className="flex flex-col items-center gap-6 py-8 text-gray-300">
             {menuItems.map((item) => (
               <li key={item.id}>
                 <button
                   onClick={() => handleMenuItemClick(item.id)}
-                  className="hover:text-[#8245ec] transition"
+                  className="hover:text-white transition duration-300"
                 >
                   {item.label}
                 </button>
               </li>
             ))}
 
-            <div className="flex space-x-6 pt-2">
-              <FaGithub className="hover:text-[#8245ec] cursor-pointer transition" size={22}/>
-              <FaLinkedin className="hover:text-[#8245ec] cursor-pointer transition" size={22}/>
+            <div className="flex gap-6 pt-2">
+              <FaGithub size={22} className="hover:text-[#8245ec] cursor-pointer transition"/>
+              <FaLinkedin size={22} className="hover:text-[#8245ec] cursor-pointer transition"/>
             </div>
           </ul>
         </div>

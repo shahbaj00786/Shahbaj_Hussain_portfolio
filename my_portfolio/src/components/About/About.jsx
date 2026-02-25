@@ -1,80 +1,119 @@
 import { TypeAnimation } from "react-type-animation";
 import Tilt from "react-parallax-tilt";
 import profileImage from "../../assets/profile2.png";
+import BlurBlob from "../BlurBlob";
 
 export const About = () => {
   return (
     <section
       id="about"
-      className="py-4 px-[7vw] md:px-[7vw] lg:px-[20vw] font-sans mt-16 md:mt-24 lg:mt-32"
+      className="
+        relative min-h-[85vh]
+        flex items-center
+        px-[7vw] lg:px-[18vw]
+        overflow-hidden
+      "
     >
-      <div className="flex flex-col-reverse md:flex-row justify-between items-center">
-        {/* Left Side */}
-        <div className="md:w-1/2 text-center md:text-left mt-8 md:mt-0">
-          {/* Greeting */}
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-2 leading-tight">
+      {/* ===== Background Layers ===== */}
+      <div className="absolute inset-0 -z-30 bg-gradient-to-b from-[#050510] via-[#07071a] to-black"></div>
+
+      <BlurBlob
+        position={{ top: "35%", left: "55%" }}
+        size={{ width: "700px", height: "700px" }}
+      />
+
+      <BlurBlob
+        position={{ top: "80%", left: "15%" }}
+        size={{ width: "400px", height: "400px" }}
+      />
+
+      {/* ===== Main Content ===== */}
+      <div className="relative z-10 flex flex-col-reverse md:flex-row items-center justify-between gap-16 w-full">
+        
+        {/* LEFT SIDE */}
+        <div className="md:w-1/2 text-center md:text-left">
+
+          <h1 className="text-3xl md:text-4xl text-gray-300 font-medium mb-3">
             Hi, I am
           </h1>
-          {/* Name */}
-          <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-4 leading-tight">
+
+          <h2 className="text-4xl sm:text-5xl md:text-6xl font-extrabold text-white mb-6 leading-tight">
             Shahbaj Hussain
           </h2>
-          {/* Skills Heading with Typing Effect */}
-          <h3 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4 text-[#8245ec] leading-tight">
-            <span className="text-white">I am a </span>
+
+          <h3 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-6">
+            <span className="text-gray-300">I am a </span>
 
             <TypeAnimation
               sequence={[
-                "Fullstack Developer",
-                2000,
-                "Coder",
-                2000,
-                "Problem Solver",
-                2000,
+                "Fullstack Developer", 2000,
+                "Coder", 2000,
+                "Problem Solver", 2000,
               ]}
-              speed={50}
+              speed={55}
               repeat={Infinity}
               cursor={true}
               className="text-[#8245ec]"
             />
           </h3>
-          {/* About Me Paragraph */}
-          <p className="text-base sm:text-lg md:text-lg text-gray-400 mb-10 mt-8 leading-relaxed">
+
+          <p className="text-base sm:text-lg text-gray-400 mb-10 leading-relaxed max-w-xl mx-auto md:mx-0">
             I am a passionate Full-Stack Developer with hands-on experience
             building modern web applications through academic and personal
             projects. I specialize in the MERN stack and enjoy creating
             responsive interfaces, scalable backend systems, and seamless user
             experiences while continuously learning new technologies.
           </p>
-          {/* Resume Button */}
+
           <a
             href="https://drive.google.com/file/d/1RtkG6i2-XJqY9yd9qIL1AgVXmGkPyxCY/view?usp=drive_link"
             target="_blank"
             rel="noopener noreferrer"
-            className="px-8 py-3 rounded-full font-semibold text-white
+            className="
+              inline-flex items-center
+              px-8 py-3 rounded-full font-semibold text-white
               bg-gradient-to-r from-[#8245ec] to-purple-500
-              hover:scale-105 transition duration-300
-              shadow-[0_0_30px_rgba(130,69,236,0.6)]"
+              transition-all duration-300
+              hover:scale-105
+              hover:shadow-[0_0_45px_rgba(130,69,236,0.9)]
+              shadow-[0_0_25px_rgba(130,69,236,0.5)]
+            "
           >
             My Resume
           </a>
         </div>
-        {/* Right Side */}
+
+        {/* RIGHT SIDE */}
         <div className="md:w-1/2 flex justify-center md:justify-end">
           <Tilt
-            className="w-48 h-48 sm:w-64 sm:h-64 md:w-[30rem] md:h-[30rem] border-4 border-purple-700 rounded-full"
-            tiltMaxAngleX={20}
-            tiltMaxAngleY={20}
-            perspective={1000}
-            scale={1.05}
-            transitionSpeed={1000}
+            tiltMaxAngleX={10}
+            tiltMaxAngleY={10}
+            perspective={1400}
+            scale={1.04}
+            transitionSpeed={1500}
             gyroscope={true}
           >
-            <img
-              src={profileImage}
-              alt="Tarun Kaushik"
-              className="w-full h-full rounded-full object-cover drop-shadow-[0_10px_20px_rgba(130,69,236,0.5)]"
-            />
+            <div className="relative w-48 h-48 sm:w-64 sm:h-64 md:w-[22rem] md:h-[22rem] lg:w-[24rem] lg:h-[24rem]">
+
+              {/* Glow */}
+              <div className="absolute inset-0 rounded-full bg-purple-600/30 blur-3xl"></div>
+
+              {/* Image Frame */}
+              <div className="
+                relative w-full h-full rounded-full p-[5px]
+                bg-gradient-to-br from-purple-500/40 to-indigo-500/30
+                shadow-[0_0_80px_rgba(130,69,236,0.35)]
+              ">
+                <div className="w-full h-full rounded-full overflow-hidden bg-black/40 backdrop-blur-xl">
+                  <img
+                    src={profileImage}
+                    alt="Shahbaj Hussain"
+                    className="w-full h-full object-cover transition duration-700 hover:scale-105"
+                  />
+                </div>
+              </div>
+
+            </div>
           </Tilt>
         </div>
       </div>

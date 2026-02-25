@@ -48,16 +48,16 @@ export const About = () => {
           </p>
           {/* Resume Button */}
           <a
-              href="https://drive.google.com/file/d/1RtkG6i2-XJqY9yd9qIL1AgVXmGkPyxCY/view?usp=drive_link"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="px-8 py-3 rounded-full font-semibold text-white
+            href="https://drive.google.com/file/d/1RtkG6i2-XJqY9yd9qIL1AgVXmGkPyxCY/view?usp=drive_link"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="px-8 py-3 rounded-full font-semibold text-white
               bg-gradient-to-r from-[#8245ec] to-purple-500
               hover:scale-105 transition duration-300
               shadow-[0_0_30px_rgba(130,69,236,0.6)]"
-            >
-              My Resume
-            </a>
+          >
+            My Resume
+          </a>
         </div>
         {/* Right Side */}
         <div className="md:w-1/2 flex justify-center md:justify-end">

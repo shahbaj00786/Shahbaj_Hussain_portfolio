@@ -56,7 +56,7 @@ export const Navbar = () => {
         </div>
 
         {/*DESKTOP MENU */}
-        <ul className="hidden md:flex items-center gap-10 text-sm font-medium text-gray-300">
+        <ul className="hidden md:flex items-center gap-10 text-md font-medium text-gray-300">
           {menuItems.map((item) => (
             <li key={item.id} className="relative group">
               <button
@@ -89,7 +89,7 @@ export const Navbar = () => {
             rel="noopener noreferrer"
             className="p-2 rounded-full hover:bg-white/10 transition-all duration-300 hover:scale-110"
           >
-            <FaGithub size={20} />
+            <FaGithub size={28} />
           </a>
 
           <a
@@ -98,7 +98,7 @@ export const Navbar = () => {
             rel="noopener noreferrer"
             className="p-2 rounded-full hover:bg-white/10 transition-all duration-300 hover:scale-110"
           >
-            <FaLinkedin size={20} />
+            <FaLinkedin size={28} />
           </a>
         </div>
 

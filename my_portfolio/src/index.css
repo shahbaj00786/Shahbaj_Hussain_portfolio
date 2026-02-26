@@ -23,3 +23,7 @@
 .animate-blob-slow {
   animation: blobSlow 20s infinite ease-in-out;
 }
+
+html {
+  scroll-behavior: smooth;
+}

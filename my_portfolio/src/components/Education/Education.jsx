@@ -8,19 +8,23 @@ export const Education = () => {
     >
       {/* Section Title */}
       <div className="text-center mb-16">
-        <h2 className="text-4xl font-bold text-white">EDUCATION</h2>
+        <h2 className="text-4xl font-bold text-white tracking-wide">
+          EDUCATION
+        </h2>
+
         <div className="w-32 h-1 bg-purple-500 mx-auto mt-4"></div>
-        <p className="text-gray-400 mt-4 text-lg font-semibold">
-          My education has been a journey of learning and development. Here are the details of my academic background
+
+        <p className="text-gray-400 mt-4 text-lg max-w-3xl mx-auto leading-relaxed">
+          My education has been a journey of learning and development,
+          building strong analytical thinking and technical foundations.
         </p>
       </div>
 
-      {/* Education Timeline */}
+      {/* Timeline */}
       <div className="relative">
-        {/* Vertical line */}
+        {/* Vertical Line */}
         <div className="absolute sm:left-1/2 left-0 transform -translate-x-1/2 sm:-translate-x-0 w-1 bg-white h-full"></div>
 
-        {/* Education Entries */}
         {education.map((edu, index) => (
           <div
             key={edu.id}
@@ -28,17 +32,21 @@ export const Education = () => {
               index % 2 === 0 ? "sm:justify-start" : "sm:justify-end"
             }`}
           >
-            {/* ❌ REMOVED TIMELINE CIRCLE */}
-
-            {/* Content Section */}
+            {/* Card */}
             <div
-              className={`w-full sm:max-w-md p-4 sm:p-8 rounded-2xl shadow-2xl border border-white bg-gray-900 backdrop-blur-md shadow-[0_0_20px_1px_rgba(130,69,236,0.3)]
-              sm:ml-44 sm:mr-44 ml-8
-              transform transition-transform duration-300 hover:scale-105`}
+              className="
+                w-full sm:max-w-md p-4 sm:p-8 rounded-2xl
+                border border-white bg-gray-900
+                backdrop-blur-md
+                shadow-[0_0_20px_1px_rgba(130,69,236,0.3)]
+                hover:border-purple-500/40
+                transition-all duration-300
+                hover:scale-105
+                sm:ml-44 sm:mr-44 ml-8
+              "
             >
-              {/* Flex container for image and text */}
+              {/* Header */}
               <div className="flex items-center space-x-6">
-                {/* School Logo/Image */}
                 <div className="w-24 h-16 bg-white rounded-md overflow-hidden">
                   <img
                     src={edu.img}
@@ -47,28 +55,31 @@ export const Education = () => {
                   />
                 </div>
 
-                {/* Degree + School */}
-                <div className="flex flex-col justify-between">
-                  <div>
-                    <h3 className="text-xl sm:text-xl font-semibold text-white">
-                      {edu.degree}
-                    </h3>
-                    <h4 className="text-md sm:text-sm text-gray-300">
-                      {edu.school}
-                    </h4>
-                  </div>
+                <div>
+                  <h3 className="text-xl sm:text-2xl font-bold text-white leading-snug">
+                    {edu.degree}
+                  </h3>
 
-                  <p className="text-sm text-gray-500 mt-2">
+                  <h4 className="text-sm text-purple-300 font-medium">
+                    {edu.school}
+                  </h4>
+
+                  <p className="text-xs text-gray-500 mt-1 uppercase tracking-wide">
                     {edu.date}
                   </p>
                 </div>
               </div>
 
-              <p className="mt-4 text-gray-400 font-bold">
-                Grade: {edu.grade}
+              {/* Grade */}
+              <p className="mt-5 text-sm">
+                <span className="text-gray-400">Grade:</span>{" "}
+                <span className="text-purple-400 font-semibold">
+                  {edu.grade}
+                </span>
               </p>
 
-              <p className="mt-4 text-gray-400">
+              {/* Description */}
+              <p className="mt-4 text-gray-400 leading-relaxed text-[15px]">
                 {edu.desc}
               </p>
             </div>
@@ -78,4 +89,3 @@ export const Education = () => {
     </section>
   );
 };
-

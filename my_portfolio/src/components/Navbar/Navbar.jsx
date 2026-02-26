@@ -7,7 +7,7 @@ export const Navbar = () => {
   const [activeSection, setActiveSection] = useState("");
   const [isScrolled, setIsScrolled] = useState(false);
 
-  /* ================= SCROLL EFFECT ================= */
+  /* SCROLL EFFECT */
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 30);
@@ -17,7 +17,7 @@ export const Navbar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  /* ================= SMOOTH SCROLL ================= */
+  /* SMOOTH SCROLL */
   const handleMenuItemClick = (id) => {
     setActiveSection(id);
     setIsOpen(false);
@@ -44,8 +44,7 @@ export const Navbar = () => {
       }`}
     >
       <div className="max-w-7xl mx-auto px-6 lg:px-12 py-5 flex items-center justify-between text-white">
-
-        {/* ================= LOGO ================= */}
+        {/* LOGO */}
         <div className="font-semibold text-xl tracking-wide cursor-pointer group">
           <span className="text-[#8245ec]">&lt;</span>
 
@@ -56,22 +55,19 @@ export const Navbar = () => {
           <span className="text-[#8245ec]">/&gt;</span>
         </div>
 
-        {/* ================= DESKTOP MENU ================= */}
+        {/*DESKTOP MENU */}
         <ul className="hidden md:flex items-center gap-10 text-sm font-medium text-gray-300">
           {menuItems.map((item) => (
             <li key={item.id} className="relative group">
               <button
                 onClick={() => handleMenuItemClick(item.id)}
                 className={`transition-all duration-300 ${
-                  activeSection === item.id
-                    ? "text-white"
-                    : "hover:text-white"
+                  activeSection === item.id ? "text-white" : "hover:text-white"
                 }`}
               >
                 {item.label}
               </button>
 
-              {/* underline animation */}
               <span
                 className={`absolute left-0 -bottom-2 h-[2px] rounded-full bg-gradient-to-r from-[#8245ec] to-purple-400
                 transition-all duration-300
@@ -85,7 +81,7 @@ export const Navbar = () => {
           ))}
         </ul>
 
-        {/* ================= SOCIAL ================= */}
+        {/*  SOCIAL  */}
         <div className="hidden md:flex items-center gap-5">
           <a
             href="https://github.com/shahbaj00786"
@@ -106,7 +102,7 @@ export const Navbar = () => {
           </a>
         </div>
 
-        {/* ================= MOBILE BUTTON ================= */}
+        {/*  MOBILE BUTTON */}
         <div className="md:hidden">
           {isOpen ? (
             <FiX
@@ -122,13 +118,11 @@ export const Navbar = () => {
         </div>
       </div>
 
-      {/* ================= MOBILE MENU ================= */}
+      {/*  MOBILE MENU */}
       <div
         className={`md:hidden absolute left-1/2 -translate-x-1/2 w-[92%]
         transition-all duration-500 ${
-          isOpen
-            ? "top-20 opacity-100"
-            : "top-10 opacity-0 pointer-events-none"
+          isOpen ? "top-20 opacity-100" : "top-10 opacity-0 pointer-events-none"
         }`}
       >
         <div className="rounded-2xl border border-white/10 bg-[#050414]/90 backdrop-blur-2xl shadow-2xl">
@@ -145,8 +139,14 @@ export const Navbar = () => {
             ))}
 
             <div className="flex gap-6 pt-2">
-              <FaGithub size={22} className="hover:text-[#8245ec] cursor-pointer transition"/>
-              <FaLinkedin size={22} className="hover:text-[#8245ec] cursor-pointer transition"/>
+              <FaGithub
+                size={22}
+                className="hover:text-[#8245ec] cursor-pointer transition"
+              />
+              <FaLinkedin
+                size={22}
+                className="hover:text-[#8245ec] cursor-pointer transition"
+              />
             </div>
           </ul>
         </div>

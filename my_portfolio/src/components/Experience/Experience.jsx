@@ -10,8 +10,10 @@ export const Experience = () => {
       {/* Background */}
       <div className="absolute inset-0 -z-20 bg-gradient-to-b from-[#050510] via-[#07071a] to-black"></div>
 
-      <div className="absolute top-40 left-1/2 -translate-x-1/2 w-[700px] h-[700px]
-        bg-purple-600/20 blur-[140px] rounded-full -z-10"></div>
+      <div
+        className="absolute top-40 left-1/2 -translate-x-1/2 w-[700px] h-[700px]
+        bg-purple-600/20 blur-[140px] rounded-full -z-10"
+      ></div>
 
       {/* Heading */}
       <div className="text-center mb-20">
@@ -22,8 +24,8 @@ export const Experience = () => {
         <div className="w-28 h-[3px] bg-gradient-to-r from-purple-500 to-pink-500 mx-auto mt-4 rounded-full"></div>
 
         <p className="text-gray-400 mt-6 text-lg max-w-2xl mx-auto">
-          Practical development experience gained through real-world projects
-          and consistent problem solving.
+          Hands-on development experience through real-world projects and
+          advanced problem-solving practice.
         </p>
       </div>
 
@@ -43,11 +45,16 @@ export const Experience = () => {
             "
           >
             {/* Title */}
-            <h3 className="text-2xl font-semibold text-white mb-1">
+            <h3 className="text-2xl font-semibold text-white">
               {exp.title}
             </h3>
 
-            <h4 className="text-purple-400 mb-2">
+            {/* Role */}
+            <p className="text-sm text-purple-400 font-medium mb-1">
+              {exp.role}
+            </p>
+
+            <h4 className="text-purple-300 mb-2">
               {exp.subtitle}
             </h4>
 
@@ -55,9 +62,15 @@ export const Experience = () => {
               {exp.date}
             </p>
 
-            <p className="text-gray-400 leading-relaxed">
-              {exp.desc}
-            </p>
+            {/* Description List */}
+            <ul className="space-y-2 text-gray-400 leading-relaxed max-w-md">
+              {exp.desc.map((point, i) => (
+                <li key={i} className="flex gap-2">
+                  <span className="text-purple-400">•</span>
+                  <span>{point}</span>
+                </li>
+              ))}
+            </ul>
 
             {/* Skills */}
             <div className="mt-6 flex flex-wrap gap-2">
@@ -66,10 +79,10 @@ export const Experience = () => {
                   key={i}
                   className="
                     text-xs px-3 py-1 rounded-full
-                    bg-purple-500/10
-                    border border-purple-500/30
-                    text-purple-300
-                    group-hover:bg-purple-500/20
+                    bg-purple-500/15
+                    border border-purple-500/40
+                    text-purple-200
+                    group-hover:bg-purple-500/25
                     transition
                   "
                 >

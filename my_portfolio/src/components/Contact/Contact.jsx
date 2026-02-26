@@ -14,10 +14,10 @@ export const Contact = () => {
 
     emailjs
       .sendForm(
-        import.meta.env.VITE_EMAIL_SERVICE_ID,
-        import.meta.env.VITE_EMAIL_TEMPLATE_ID,
+        "service_19x3aky", // Service ID
+        "template_66duxj8", // Template ID
         form.current,
-        import.meta.env.VITE_EMAIL_PUBLIC_KEY
+        "fxWrlB_AZH4t5LRGx" // Public Key
       )
       .then(() => {
         form.current.reset();
@@ -105,6 +105,9 @@ export const Contact = () => {
             required
             className="w-full p-3 rounded-md bg-[#131025] text-white border border-gray-600 focus:outline-none focus:border-purple-500 transition"
           />
+
+          {/* Hidden Field: Time (Required for your template design) */}
+          <input type="hidden" name="time" value={new Date().toLocaleString()} />
 
           {/* Submit Button */}
           <button

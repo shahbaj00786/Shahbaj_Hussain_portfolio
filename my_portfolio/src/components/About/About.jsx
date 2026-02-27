@@ -29,7 +29,6 @@ export const About = () => {
 
       {/* ===== Main Content ===== */}
       <div className="relative z-10 flex flex-col-reverse md:flex-row items-center justify-between gap-16 w-full">
-        
         {/* LEFT SIDE */}
         <div className="md:w-1/2 text-center md:text-left">
           <h1 className="text-3xl md:text-4xl text-gray-300 font-medium mb-3">
@@ -67,13 +66,14 @@ export const About = () => {
 
           {/* Trust Line */}
           <p className="text-sm text-purple-400 font-medium mb-8">
-            B.Tech Student • MERN Stack Developer • Kolkata, India • Open to Full-Time Opportunities
+            B.Tech Student • MERN Stack Developer • Kolkata, India • Open to
+            Full-Time Opportunities
           </p>
 
           {/* CTA Buttons */}
           <div className="flex gap-4 justify-center md:justify-start">
             <a
-              href="https://drive.google.com/file/d/1RtkG6i2-XJqY9yd9qIL1AgVXmGkPyxCY/view?usp=drive_link"
+              href="/resume.pdf"
               target="_blank"
               rel="noopener noreferrer"
               className="
@@ -86,7 +86,7 @@ export const About = () => {
                 shadow-[0_0_25px_rgba(130,69,236,0.5)]
               "
             >
-              View Resume
+              Download Resume
             </a>
           </div>
         </div>
@@ -102,7 +102,6 @@ export const About = () => {
             gyroscope={true}
           >
             <div className="relative w-48 h-48 sm:w-64 sm:h-64 md:w-[22rem] md:h-[22rem] lg:w-[24rem] lg:h-[24rem]">
-              
               {/* Glow */}
               <div className="absolute inset-0 rounded-full bg-purple-600/30 blur-3xl"></div>
 

@@ -1,101 +1,81 @@
 import React from "react";
-import { FaGithub, FaLinkedin } from "react-icons/fa";
+import { FaGithub, FaLinkedin, FaEnvelope } from "react-icons/fa";
 
 export const Footer = () => {
-
   const handleScroll = (sectionId) => {
-    const section = document.getElementById(sectionId);
-    if (section) {
-      section.scrollIntoView({ behavior: "smooth" });
-    }
+    document.getElementById(sectionId)?.scrollIntoView({ behavior: "smooth" });
   };
 
+  const links = [
+    { name: "About", id: "about" },
+    { name: "Skills", id: "skills" },
+    { name: "Experience", id: "experience" },
+    { name: "Projects", id: "work" },
+    { name: "Education", id: "education" },
+    { name: "Contact", id: "contact" },
+  ];
+
+  const socials = [
+    { icon: <FaLinkedin size={16} />, href: "https://www.linkedin.com/in/shahbaj-hussain-9160443a8", label: "LinkedIn" },
+    { icon: <FaGithub size={16} />, href: "https://github.com/shahbaj00786", label: "GitHub" },
+    { icon: <FaEnvelope size={16} />, href: "mailto:shahbaj00786@gmail.com", label: "Email" },
+  ];
+
   return (
-    <footer className="
-      text-white
-      py-10
-      px-[12vw] md:px-[7vw] lg:px-[20vw]
-      border-t border-white/10
-      bg-gradient-to-b from-transparent to-[#050510]
-    ">
-      <div className="container mx-auto text-center">
+    <footer className="relative overflow-hidden border-t border-white/[0.06] bg-[#030311]">
+      {/* Subtle glow */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-96 h-px bg-gradient-to-r from-transparent via-purple-500/40 to-transparent" />
 
-        {/* Name */}
-        <h2 className="text-2xl font-bold text-purple-400 tracking-wide">
-          Shahbaj Hussain
-        </h2>
+      <div className="max-w-5xl mx-auto px-[7vw] lg:px-0 py-16">
 
-        {/* Role Line (NEW — professional touch) */}
-        <p className="text-gray-400 text-sm mt-1">
-          MERN Stack Developer • Kolkata, India
-        </p>
+        {/* Top row */}
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-8 mb-12">
+          {/* Brand */}
+          <div>
+            <h2 className="text-xl font-black text-white tracking-tight">
+              <span className="text-[#9b6dff]">&lt;</span>
+              Shahbaj Hussain
+              <span className="text-[#9b6dff]">/&gt;</span>
+            </h2>
+            <p className="text-gray-600 text-sm mt-1">MERN Stack Developer • Kolkata, India</p>
+          </div>
+
+          {/* Socials */}
+          <div className="flex items-center gap-2">
+            {socials.map((s) => (
+              <a key={s.label} href={s.href} target="_blank" rel="noopener noreferrer"
+                aria-label={s.label}
+                className="w-9 h-9 rounded-xl flex items-center justify-center
+                  text-gray-500 border border-white/[0.07] bg-white/[0.03]
+                  hover:text-purple-400 hover:border-purple-500/30 hover:bg-purple-500/10
+                  transition-all duration-300">
+                {s.icon}
+              </a>
+            ))}
+          </div>
+        </div>
+
+        {/* Divider */}
+        <div className="h-px bg-white/[0.05] mb-10" />
 
         {/* Navigation */}
-        <nav className="flex flex-wrap justify-center gap-5 mt-6">
-          {[
-            { name: "About", id: "about" },
-            { name: "Skills", id: "skills" },
-            { name: "Experience", id: "experience" },
-            { name: "Projects", id: "work" },
-            { name: "Education", id: "education" },
-          ].map((item, index) => (
+        <nav className="flex flex-wrap justify-center gap-1 mb-10">
+          {links.map((item) => (
             <button
-              key={index}
+              key={item.id}
               onClick={() => handleScroll(item.id)}
-              className="
-                text-sm sm:text-base
-                text-gray-400
-                hover:text-purple-400
-                transition-colors duration-300
-              "
+              className="px-4 py-2 rounded-lg text-sm text-gray-500 hover:text-gray-200 hover:bg-white/[0.05] transition-all duration-200"
             >
               {item.name}
             </button>
           ))}
         </nav>
 
-        {/* Social Icons */}
-        <div className="flex justify-center gap-6 mt-8">
-
-          <a
-            href="https://www.linkedin.com/in/shahbaj-hussain-9160443a8"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="
-              p-3 rounded-full
-              bg-white/5 border border-white/10
-              hover:border-purple-500/50
-              hover:text-purple-400
-              hover:scale-110
-              transition-all duration-300
-            "
-          >
-            <FaLinkedin size={18} />
-          </a>
-
-          <a
-            href="https://github.com/shahbaj00786"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="
-              p-3 rounded-full
-              bg-white/5 border border-white/10
-              hover:border-purple-500/50
-              hover:text-purple-400
-              hover:scale-110
-              transition-all duration-300
-            "
-          >
-            <FaGithub size={18} />
-          </a>
-
+        {/* Bottom */}
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-gray-600">
+          <p>© {new Date().getFullYear()} Shahbaj Hussain. All rights reserved.</p>
+          <p>Built with React.js + Tailwind CSS</p>
         </div>
-
-        {/* Copyright */}
-        <p className="text-sm text-gray-500 mt-8">
-          © {new Date().getFullYear()} Shahbaj Hussain. All rights reserved.
-        </p>
-
       </div>
     </footer>
   );

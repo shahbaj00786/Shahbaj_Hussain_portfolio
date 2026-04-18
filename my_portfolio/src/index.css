@@ -27,3 +27,12 @@
 html {
   scroll-behavior: smooth;
 }
+
+@keyframes lcSlide {
+  from { opacity: 0; transform: translateX(18px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+@keyframes lcPulse {
+  0%, 100% { transform: scale(1);   opacity: 1;   }
+  50%       { transform: scale(1.3); opacity: 0.6; }
+}

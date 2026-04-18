@@ -4,26 +4,31 @@ import { FaGithub, FaLinkedin } from "react-icons/fa";
 
 export const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [activeSection, setActiveSection] = useState("");
+  const [activeSection, setActiveSection] = useState("about");
   const [isScrolled, setIsScrolled] = useState(false);
 
-  /* SCROLL EFFECT */
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 30);
-    };
 
-    window.addEventListener("scroll", handleScroll);
+      const sections = ["about", "skills", "experience", "work", "education", "contact"];
+      const scrollPos = window.scrollY + 120;
+      for (const id of sections) {
+        const el = document.getElementById(id);
+        if (el && scrollPos >= el.offsetTop && scrollPos < el.offsetTop + el.offsetHeight) {
+          setActiveSection(id);
+          break;
+        }
+      }
+    };
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  /* SMOOTH SCROLL */
   const handleMenuItemClick = (id) => {
     setActiveSection(id);
     setIsOpen(false);
-
-    const section = document.getElementById(id);
-    section?.scrollIntoView({ behavior: "smooth", block: "start" });
+    document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
   };
 
   const menuItems = [
@@ -32,122 +37,125 @@ export const Navbar = () => {
     { id: "experience", label: "Experience" },
     { id: "work", label: "Projects" },
     { id: "education", label: "Education" },
+    { id: "contact", label: "Contact" },
   ];
 
   return (
     <nav
       className={`fixed w-full top-0 z-50 transition-all duration-500
-      ${
-        isScrolled
-          ? "bg-[#050414]/75 backdrop-blur-2xl border-b border-white/10 shadow-[0_10px_40px_rgba(0,0,0,0.4)]"
+        ${isScrolled
+          ? "bg-[#050414]/80 backdrop-blur-2xl border-b border-white/[0.06] shadow-[0_4px_30px_rgba(0,0,0,0.5)]"
           : "bg-transparent"
-      }`}
+        }`}
     >
-      <div className="max-w-7xl mx-auto px-6 lg:px-12 py-5 flex items-center justify-between text-white">
+      <div className="max-w-7xl mx-auto px-6 lg:px-12 py-4 flex items-center justify-between text-white">
+
         {/* LOGO */}
-        <div className="font-semibold text-xl tracking-wide cursor-pointer group">
-          <span className="text-[#8245ec]">&lt;</span>
-
-          <span className="bg-gradient-to-r from-white via-gray-300 to-gray-500 bg-clip-text text-transparent group-hover:from-[#8245ec] group-hover:to-white transition duration-500">
-            Shahbaj Hussain
+        <button
+          onClick={() => handleMenuItemClick("about")}
+          className="group flex items-center gap-1 font-bold text-xl tracking-tight"
+        >
+          <span className="text-[#9b6dff] transition-all duration-300 group-hover:text-white">&lt;</span>
+          <span className="bg-gradient-to-r from-white to-gray-400 bg-clip-text text-transparent group-hover:from-[#9b6dff] group-hover:to-white transition-all duration-500">
+            Shahbaj
           </span>
+          <span className="text-[#9b6dff] transition-all duration-300 group-hover:text-white">/&gt;</span>
+        </button>
 
-          <span className="text-[#8245ec]">/&gt;</span>
-        </div>
-
-        {/*DESKTOP MENU */}
-        <ul className="hidden md:flex items-center gap-10 text-md font-medium text-gray-300">
+        {/* DESKTOP MENU */}
+        <ul className="hidden md:flex items-center gap-1">
           {menuItems.map((item) => (
-            <li key={item.id} className="relative group">
+            <li key={item.id}>
               <button
                 onClick={() => handleMenuItemClick(item.id)}
-                className={`transition-all duration-300 ${
-                  activeSection === item.id ? "text-white" : "hover:text-white"
-                }`}
+                className={`relative px-4 py-2 text-sm font-medium rounded-lg transition-all duration-300
+                  ${activeSection === item.id
+                    ? "text-white bg-white/[0.08]"
+                    : "text-gray-400 hover:text-white hover:bg-white/[0.05]"
+                  }`}
               >
                 {item.label}
+                {activeSection === item.id && (
+                  <span className="absolute bottom-0.5 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-[#9b6dff]" />
+                )}
               </button>
-
-              <span
-                className={`absolute left-0 -bottom-2 h-[2px] rounded-full bg-gradient-to-r from-[#8245ec] to-purple-400
-                transition-all duration-300
-                ${
-                  activeSection === item.id
-                    ? "w-full"
-                    : "w-0 group-hover:w-full"
-                }`}
-              />
             </li>
           ))}
         </ul>
 
-        {/*  SOCIAL  */}
-        <div className="hidden md:flex items-center gap-5">
+        {/* SOCIAL LINKS */}
+        <div className="hidden md:flex items-center gap-2">
           <a
             href="https://github.com/shahbaj00786"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="p-2 rounded-full hover:bg-white/10 transition-all duration-300 hover:scale-110"
+            target="_blank" rel="noopener noreferrer"
+            className="p-2 rounded-lg text-gray-400 hover:text-white hover:bg-white/[0.08] transition-all duration-300"
+            title="GitHub"
           >
-            <FaGithub size={28} />
+            <FaGithub size={20} />
           </a>
-
           <a
             href="https://www.linkedin.com/in/shahbaj-hussain-9160443a8"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="p-2 rounded-full hover:bg-white/10 transition-all duration-300 hover:scale-110"
+            target="_blank" rel="noopener noreferrer"
+            className="p-2 rounded-lg text-gray-400 hover:text-white hover:bg-white/[0.08] transition-all duration-300"
+            title="LinkedIn"
           >
-            <FaLinkedin size={28} />
+            <FaLinkedin size={20} />
           </a>
+          <button
+            onClick={() => handleMenuItemClick("contact")}
+            className="ml-2 px-5 py-2 rounded-lg text-sm font-semibold text-white
+              bg-gradient-to-r from-[#7c3aed] to-[#9b6dff]
+              hover:shadow-[0_0_20px_rgba(124,58,237,0.5)] hover:scale-105
+              transition-all duration-300"
+          >
+            Hire Me
+          </button>
         </div>
 
-        {/*  MOBILE BUTTON */}
-        <div className="md:hidden">
-          {isOpen ? (
-            <FiX
-              className="text-3xl text-[#8245ec] cursor-pointer"
-              onClick={() => setIsOpen(false)}
-            />
-          ) : (
-            <FiMenu
-              className="text-3xl text-[#8245ec] cursor-pointer"
-              onClick={() => setIsOpen(true)}
-            />
-          )}
-        </div>
+        {/* MOBILE BUTTON */}
+        <button
+          className="md:hidden p-2 rounded-lg text-gray-300 hover:bg-white/10 transition"
+          onClick={() => setIsOpen(!isOpen)}
+          aria-label="Toggle menu"
+        >
+          {isOpen ? <FiX size={22} /> : <FiMenu size={22} />}
+        </button>
       </div>
 
-      {/*  MOBILE MENU */}
-      <div
-        className={`md:hidden absolute left-1/2 -translate-x-1/2 w-[92%]
-        transition-all duration-500 ${
-          isOpen ? "top-20 opacity-100" : "top-10 opacity-0 pointer-events-none"
-        }`}
-      >
-        <div className="rounded-2xl border border-white/10 bg-[#050414]/90 backdrop-blur-2xl shadow-2xl">
-          <ul className="flex flex-col items-center gap-6 py-8 text-gray-300">
+      {/* MOBILE MENU */}
+      <div className={`md:hidden transition-all duration-400 overflow-hidden ${isOpen ? "max-h-[500px] opacity-100" : "max-h-0 opacity-0"}`}>
+        <div className="mx-4 mb-4 rounded-2xl border border-white/10 bg-[#070718]/95 backdrop-blur-2xl shadow-2xl overflow-hidden">
+          <ul className="flex flex-col py-4">
             {menuItems.map((item) => (
               <li key={item.id}>
                 <button
                   onClick={() => handleMenuItemClick(item.id)}
-                  className="hover:text-white transition duration-300"
+                  className={`w-full text-left px-6 py-3 text-sm font-medium transition-all duration-200
+                    ${activeSection === item.id
+                      ? "text-[#9b6dff] bg-purple-500/10"
+                      : "text-gray-400 hover:text-white hover:bg-white/5"
+                    }`}
                 >
                   {item.label}
                 </button>
               </li>
             ))}
-
-            <div className="flex gap-6 pt-2">
-              <FaGithub
-                size={22}
-                className="hover:text-[#8245ec] cursor-pointer transition"
-              />
-              <FaLinkedin
-                size={22}
-                className="hover:text-[#8245ec] cursor-pointer transition"
-              />
-            </div>
+            <li className="mx-4 mt-3 pt-3 border-t border-white/10 flex gap-3 items-center">
+              <a href="https://github.com/shahbaj00786" target="_blank" rel="noreferrer"
+                className="p-2 rounded-lg text-gray-400 hover:text-white hover:bg-white/10 transition">
+                <FaGithub size={18} />
+              </a>
+              <a href="https://www.linkedin.com/in/shahbaj-hussain-9160443a8" target="_blank" rel="noreferrer"
+                className="p-2 rounded-lg text-gray-400 hover:text-white hover:bg-white/10 transition">
+                <FaLinkedin size={18} />
+              </a>
+              <button
+                onClick={() => handleMenuItemClick("contact")}
+                className="ml-auto px-5 py-2 rounded-lg text-sm font-semibold text-white bg-gradient-to-r from-[#7c3aed] to-[#9b6dff] transition hover:opacity-90"
+              >
+                Hire Me
+              </button>
+            </li>
           </ul>
         </div>
       </div>

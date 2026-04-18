@@ -97,7 +97,7 @@ export const SkillsInfo = [
 export const experiences = [
   {
     id: 1,
-    title: "Full-Stack Development Practice",
+    title: "Full-Stack Development Experience",
     role: "Full-Stack Developer (MERN)",
     subtitle: "Hands-on MERN Development Projects",
     date: "2024 — Present",
@@ -117,28 +117,7 @@ export const experiences = [
       "Tailwind CSS",
     ],
   },
-  {
-    id: 2,
-    title: "Data Structures & Algorithms Practice",
-    role: "Data Structures & Algorithms",
-    subtitle: "Problem Solving Across Coding Platforms",
-    date: "2023 — Present",
-    desc: [
-      "Solved 200+ DSA problems across coding platforms GeeksforGeeks | Coding Ninjas | Leetcode",
-      "Strengthened algorithmic thinking and optimization skills",
-      "Practiced Graphs, DP, Trees, and Greedy algorithms",
-      "Improved time complexity analysis and logical reasoning",
-    ],
-    skills: [
-      "C++",
-      "DSA",
-      "Algorithms",
-      "Problem Solving",
-      "Graphs",
-      "Dynamic Programming",
-      "Recursion",
-    ],
-  },
+
 ];
 
 export const education = [
